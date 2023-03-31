@@ -66,7 +66,24 @@ function equals() {
   secondNumberText = "";
   updateDisplayInnerText();
 }
+function clearAll() {
+  firstNumberText = "";
+  secondNumberText = "";
+  operator = "";
+  updateDisplayInnerText();
+}
 
 function updateDisplayInnerText() {
   display.innerText = firstNumberText + " " + operator + " " + secondNumberText;
+}
+
+function deleteText() {
+  if (secondNumberText) {
+    secondNumberText = "";
+  } else if (operator) {
+    operator = "";
+  } else {
+    firstNumberText = "";
+  }
+  updateDisplayInnerText();
 }
