@@ -78,7 +78,7 @@ function equals() {
   firstNumber = parseFloat(firstNumberText);
   secondNumber = parseFloat(secondNumberText);
   firstNumberText = operate(operator, firstNumber, secondNumber);
-  totalCharacterCount = firstNumberText.length();
+  totalCharacterCount = firstNumberText.length;
   operator = "";
   secondNumberText = "";
   hasDecimal = false;
