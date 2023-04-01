@@ -1,15 +1,19 @@
 #display {
   height: 30px;
   font-size: x-large;
+  font-family: cursive;
   text-align: center;
   border-style: outset;
   margin: 10px;
+  background: linear-gradient(180deg, #f74be6 0%, #f636d6 100%);
 }
 #container {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 250px;
   width: 300px;
+  background: linear-gradient(180deg, #4bf75c 0%, #8df636 100%);
+  border-radius: 6px;
 }
 .row {
   display: flex;
@@ -19,6 +23,8 @@
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 button {
   display: flex;
@@ -38,7 +44,12 @@ button {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
+.operator {
+  background: linear-gradient(180deg, #4bf7c9 0%, #36ecf6 100%);
+}
+.special {
+  background: linear-gradient(180deg, #f7c44b 0%, #f6d036 100%);
+}
 button:focus {
   box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
     0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
