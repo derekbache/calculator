@@ -8,6 +8,7 @@ let display = document.getElementById("display");
 let displayText;
 let totalCharacterCount = 0;
 let hasDecimal = false;
+let totalled = false;
 
 function add(a, b) {
   return a + b;
@@ -58,6 +59,10 @@ function addToDisplay(character) {
     operator = "/";
     hasDecimal = false;
   } else if (!operator) {
+    if (totalled) {
+      firstNumberText = "";
+      totalled = false;
+    }
     firstNumberText += character;
   } else {
     secondNumberText += character;
@@ -73,6 +78,7 @@ function equals() {
   operator = "";
   secondNumberText = "";
   hasDecimal = false;
+  totalled = true;
   updateDisplayInnerText();
 }
 function clearAll() {
@@ -80,6 +86,8 @@ function clearAll() {
   secondNumberText = "";
   operator = "";
   hasDecimal = false;
+  totalCharacterCount = 0;
+  totalled = false;
   updateDisplayInnerText();
 }
 
