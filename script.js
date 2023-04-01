@@ -72,6 +72,9 @@ function addToDisplay(character) {
 }
 
 function equals() {
+  if (!(firstNumberText && secondNumberText && operator)) {
+    return;
+  }
   firstNumber = parseFloat(firstNumberText);
   secondNumber = parseFloat(secondNumberText);
   firstNumberText = operate(operator, firstNumber, secondNumber);
@@ -110,6 +113,7 @@ function errorHandling(typeOfError) {
   if (typeOfError == "overflow") {
     return alert("Too Many digits!");
   } else if (typeOfError == "divideByZero") {
+    clearAll();
     return alert("Bruv, you ain't dividin by zero");
   } else if (typeOfError == "oneTooManyDecimalsPal") {
     return alert("How many decimals does one number need??");
