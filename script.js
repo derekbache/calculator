@@ -37,7 +37,7 @@ function operate(operator, a, b) {
 }
 function addToDisplay(character) {
   totalCharacterCount++;
-  if (totalCharacterCount > 18) {
+  if (totalCharacterCount > 20) {
     return errorHandling("overflow");
   }
   if (character == ".") {
@@ -78,6 +78,7 @@ function equals() {
   firstNumber = parseFloat(firstNumberText);
   secondNumber = parseFloat(secondNumberText);
   firstNumberText = operate(operator, firstNumber, secondNumber);
+  totalCharacterCount = firstNumberText.length();
   operator = "";
   secondNumberText = "";
   hasDecimal = false;
@@ -100,10 +101,13 @@ function updateDisplayInnerText() {
 
 function deleteText() {
   if (secondNumberText) {
+    totalCharacterCount -= secondNumberText.length;
     secondNumberText = "";
   } else if (operator) {
+    totalCharacterCount--;
     operator = "";
   } else {
+    totalCharacterCount -= firstNumberText.length;
     firstNumberText = "";
   }
   updateDisplayInnerText();
