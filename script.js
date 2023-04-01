@@ -6,48 +6,57 @@ let operator = "";
 let operatorText;
 let display = document.getElementById("display");
 let displayText;
+let totalCharacterCount = 0;
+let hasDecimal = false;
 
-function add(num1, num2) {
-  let total = num1 + num2;
-  return total;
+function add(a, b) {
+  return a + b;
 }
-function subtract(num1, num2) {
-  let total = num1 - num2;
-  return total;
+function subtract(a, b) {
+  return a - b;
 }
-function multiply(num1, num2) {
-  let total = num1 * num2;
-  return total;
+function multiply(a, b) {
+  return a * b;
 }
-function divide(num1, num2) {
-  let total = num1 / num2;
-  return total;
+function divide(a, b) {
+  return a / b;
 }
-function operate(operator, firstNumber, secondNumber) {
+function operate(operator, a, b) {
   switch (operator) {
     case "+":
-      total = add(firstNumber, secondNumber);
-      return total;
+      return add(a, b);
     case "-":
-      total = subtract(firstNumber, secondNumber);
-      return total;
+      return subtract(a, b);
     case "*":
-      total = multiply(firstNumber, secondNumber);
-      return total;
+      return multiply(a, b);
     case "/":
-      total = divide(firstNumber, secondNumber);
-      return total;
+      if (b === 0) return errorHandling("divideByZero");
+      return divide(a, b);
   }
 }
 function addToDisplay(character) {
+  totalCharacterCount++;
+  if (totalCharacterCount > 18) {
+    return errorHandling("overflow");
+  }
+  if (character == ".") {
+    if (hasDecimal) {
+      return errorHandling("oneTooManyDecimalsPal");
+    }
+    hasDecimal = true;
+  }
   if (character == "+") {
     operator = "+";
+    hasDecimal = false;
   } else if (character == "-") {
     operator = "-";
+    hasDecimal = false;
   } else if (character == "*") {
     operator = "*";
+    hasDecimal = false;
   } else if (character == "/") {
     operator = "/";
+    hasDecimal = false;
   } else if (!operator) {
     firstNumberText += character;
   } else {
@@ -60,16 +69,17 @@ function addToDisplay(character) {
 function equals() {
   firstNumber = parseFloat(firstNumberText);
   secondNumber = parseFloat(secondNumberText);
-  operate(operator, firstNumber, secondNumber);
-  firstNumberText = total;
+  firstNumberText = operate(operator, firstNumber, secondNumber);
   operator = "";
   secondNumberText = "";
+  hasDecimal = false;
   updateDisplayInnerText();
 }
 function clearAll() {
   firstNumberText = "";
   secondNumberText = "";
   operator = "";
+  hasDecimal = false;
   updateDisplayInnerText();
 }
 
@@ -86,4 +96,14 @@ function deleteText() {
     firstNumberText = "";
   }
   updateDisplayInnerText();
+}
+
+function errorHandling(typeOfError) {
+  if (typeOfError == "overflow") {
+    return alert("Too Many digits!");
+  } else if (typeOfError == "divideByZero") {
+    return alert("Bruv, you ain't dividin by zero");
+  } else if (typeOfError == "oneTooManyDecimalsPal") {
+    return alert("How many decimals does one number need??");
+  }
 }
